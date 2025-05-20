@@ -1,2 +1,4 @@
-package backend.receipt.review.controller;public class ReviewController {
+package backend.receipt.review.controller;
+
+public class ReviewController {
 }
