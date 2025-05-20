@@ -1,2 +1,4 @@
-package backend.receipt.purchase.repository;public class PurchaseRepository {
+package backend.receipt.purchase.repository;
+
+public class PurchaseRepository {
 }

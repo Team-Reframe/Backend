@@ -1,2 +1,4 @@
-package backend.receipt.purchase.service;public class PurchaseService {
+package backend.receipt.purchase.service;
+
+public class PurchaseService {
 }
