@@ -1,2 +1,4 @@
-package backend.receipt.point.controller;public class PointController {
+package backend.receipt.point.controller;
+
+public class PointController {
 }

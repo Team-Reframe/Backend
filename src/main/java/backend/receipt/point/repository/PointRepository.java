@@ -1,2 +1,4 @@
-package backend.receipt.point.repository;public class PointRepository {
+package backend.receipt.point.repository;
+
+public class PointRepository {
 }
