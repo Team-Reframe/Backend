@@ -1,2 +1,4 @@
-package backend.receipt.member.service;public class MemberService {
+package backend.receipt.member.service;
+
+public class MemberService {
 }

@@ -1,2 +1,4 @@
-package backend.receipt.member.controller;public class MemberController {
+package backend.receipt.member.controller;
+
+public class MemberController {
 }
