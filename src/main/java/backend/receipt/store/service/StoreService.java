@@ -1,2 +1,4 @@
-package backend.receipt.store.service;public class StoreService {
+package backend.receipt.store.service;
+
+public class StoreService {
 }

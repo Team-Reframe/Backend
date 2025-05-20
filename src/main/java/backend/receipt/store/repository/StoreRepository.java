@@ -1,2 +1,4 @@
-package backend.receipt.store.repository;public class StoreRepository {
+package backend.receipt.store.repository;
+
+public class StoreRepository {
 }
