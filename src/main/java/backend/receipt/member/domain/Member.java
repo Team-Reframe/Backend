@@ -21,8 +21,8 @@ public class Member {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false, unique = true)
-    private String name;
+    @Column(nullable = false)
+    private String name; //실명
 
     public Member(String email, String password, String name) {
         this.email = email;
