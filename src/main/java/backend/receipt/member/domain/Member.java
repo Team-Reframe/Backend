@@ -16,4 +16,16 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
+    private String userEmail;
+    private String userId;
+    private String userPassword;
+    private String userName;
+
+    public Member(String userEmail, String userId, String userPassword, String userName) {
+        this.userEmail = userEmail;
+        this.userId = userId;
+        this.userPassword = userPassword;
+        this.userName = userName;
+    }
+
 }
