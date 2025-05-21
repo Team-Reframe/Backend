@@ -5,7 +5,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -16,16 +15,19 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
-    private String userEmail;
-    private String userId;
-    private String userPassword;
-    private String userName;
+    @Column(nullable = false)
+    private String email;
 
-    public Member(String userEmail, String userId, String userPassword, String userName) {
-        this.userEmail = userEmail;
-        this.userId = userId;
-        this.userPassword = userPassword;
-        this.userName = userName;
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false, unique = true)
+    private String name;
+
+    public Member(String email, String password, String name) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
     }
 
 }

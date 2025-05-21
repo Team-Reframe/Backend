@@ -6,10 +6,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class MemberRequest {
-    private String userEmail;
-    private String userId;
-    private String userPassword;
+    private String email;
+    private String password;
     private String confirmPassword;
-    private String userName;
-
+    private String name;
 }
