@@ -1,4 +1,9 @@
 package backend.receipt.member.repository;
 
-public class MemberRepository {
+
+import backend.receipt.member.domain.Member;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface MemberRepository extends JpaRepository<Member, Long> {
+    boolean existsByEmail(String email);
 }
