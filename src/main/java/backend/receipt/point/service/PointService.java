@@ -48,7 +48,7 @@ public class PointService {
         Point point = Point.builder()
                 .member(member)
                 .purchase(purchase)
-                .amount(points)
+                .points(points)
                 .type(PointType.POINT)
                 .build();
 

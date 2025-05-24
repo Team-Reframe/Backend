@@ -24,13 +24,12 @@ public class Point {
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
-    //  Purchase 외래키
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "purchase_id", nullable = false)
     private Purchase purchase;
 
     private PointType type;
 
-    private int amount;
+    private int points;
 
 }

@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class PointResponse  {
-    private Integer amount;
+    private Integer points;
     private Long purchaseId;
-    private Long memberId;   // 현재 누적 포인트 합계
+    private Long memberId;
 }

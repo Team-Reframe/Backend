@@ -9,7 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface PointRepository extends CrudRepository<Point, Long> {
 
-    @Query("SELECT SUM(p.amount) FROM Point p WHERE p.member.id = :memberId AND p.type = :pointType")
+    @Query("SELECT SUM(p.points) FROM Point p WHERE p.member.id = :memberId AND p.type = :pointType")
     Integer getTotalPoints(@Param("memberId") Long memberId, @Param("pointType") PointType pointType);
 
 
