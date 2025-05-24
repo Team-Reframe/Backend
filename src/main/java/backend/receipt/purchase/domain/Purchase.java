@@ -17,4 +17,7 @@ public class Purchase {
     private Long id;
 
     private int amount;
+    public Purchase(int amount) {
+        this.amount = amount;
+    }
 }

@@ -5,7 +5,7 @@ import backend.receipt.member.domain.Member;
 import backend.receipt.purchase.domain.Purchase;
 import jakarta.persistence.*;
 import lombok.*;
-import java.time.LocalDateTime;
+
 
 @Entity
 @Getter
@@ -24,7 +24,7 @@ public class Point {
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
-    // ✅ Purchase 외래키
+    //  Purchase 외래키
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "purchase_id", nullable = false)
     private Purchase purchase;
@@ -33,9 +33,4 @@ public class Point {
 
     private int amount;
 
-    private LocalDateTime createdAt;
-
-    private LocalDateTime updatedAt;
-
-    private LocalDateTime deletedAt;
 }
