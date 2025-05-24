@@ -1,8 +1,8 @@
 package backend.receipt.point.controller;
 
 import backend.receipt.member.repository.MemberRepository;
-import backend.receipt.point.DTO.PointRequest;
-import backend.receipt.point.DTO.PointResponse;
+import backend.receipt.point.dto.PointRequest;
+import backend.receipt.point.dto.PointResponse;
 import backend.receipt.point.repository.PointRepository;
 import backend.receipt.point.service.PointService;
 import backend.receipt.purchase.repository.PurchaseRepository;
@@ -19,9 +19,7 @@ import org.springframework.web.bind.annotation.*;
 public class PointController {
 
     private final PointService pointService;
-    private final PurchaseRepository purchaseRepository;
-    private final MemberRepository memberRepository;
-    private final PointRepository pointRepository;
+
 
     @PostMapping("/reward")
     public ResponseEntity<PointResponse> givePoint(@RequestBody PointRequest request) {

@@ -4,7 +4,7 @@ import backend.receipt.member.domain.Member;
 import backend.receipt.member.repository.MemberRepository;
 import backend.receipt.point.domain.Point;
 import backend.receipt.point.domain.PointType;
-import backend.receipt.point.DTO.PointResponse;
+import backend.receipt.point.dto.PointResponse;
 import backend.receipt.point.repository.PointRepository;
 import backend.receipt.purchase.domain.Purchase;
 import backend.receipt.purchase.repository.PurchaseRepository;
@@ -41,6 +41,8 @@ public class PointService {
         }
 
         int points = (int) Math.round(purchase.getAmount() * rate);
+
+
 
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new IllegalArgumentException("회원이 존재하지 않습니다."));
