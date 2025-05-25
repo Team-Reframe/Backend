@@ -17,14 +17,15 @@ spring:
       hibernate:
         format_sql: true
 
-
   mvc:
     servlet:
       path: /api/v1
 
-  sql:
-    init:
-      mode: always
+
+  kakao:
+    api:
+      key:
+        rest: ${KAKAO_API_KEY_REST}
 
 server:
   port: 8081
