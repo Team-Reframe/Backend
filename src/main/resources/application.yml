@@ -26,3 +26,6 @@ spring:
     init:
       mode: always
 
+  naver:
+    map:
+      client-id: ${MAP_CLIENT_ID}

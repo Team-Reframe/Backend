@@ -25,4 +25,12 @@ public class StoreController {
         return ResponseEntity.ok(stores);
     }
 
+    @GetMapping("/map")
+    public List<StoreResponse> getStoresInMap(
+            @RequestParam double swLat,
+            @RequestParam double swLng,
+            @RequestParam double neLat,
+            @RequestParam double neLng) {
+        return storeService.findStoresInArea(swLat, swLng, neLat, neLng);
+    }
 }
