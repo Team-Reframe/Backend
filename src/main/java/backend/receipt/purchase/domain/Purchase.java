@@ -15,4 +15,7 @@ public class Purchase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="purchase_id")
     private Long id;
+
+    private int amount;
+
 }
