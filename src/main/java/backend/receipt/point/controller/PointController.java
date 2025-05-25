@@ -11,18 +11,19 @@ import backend.receipt.point.service.PointTotalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 
 
 @RestController
 @RequestMapping
 @RequiredArgsConstructor
+@Tag(name = "Point", description = "포인트 API")
 public class PointController {
 
     private final PointService pointService;
     private final PointTotalService pointTotalService;
-    private Long memberId;
+
 
     @PostMapping("/reward")
     public ResponseEntity<PointResponse> givePoint(@RequestBody PointRequest request) {
