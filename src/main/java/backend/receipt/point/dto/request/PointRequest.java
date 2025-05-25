@@ -1,4 +1,4 @@
-package backend.receipt.point.dto;
+package backend.receipt.point.dto.request;
 
 import lombok.Getter;
 import lombok.Setter;
