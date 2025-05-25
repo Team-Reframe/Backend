@@ -26,3 +26,5 @@ spring:
     init:
       mode: always
 
+server:
+  port: 8081
