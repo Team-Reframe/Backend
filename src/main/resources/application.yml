@@ -29,3 +29,6 @@ spring:
   naver:
     map:
       client-id: ${MAP_CLIENT_ID}
+
+server:
+  port: 8081
