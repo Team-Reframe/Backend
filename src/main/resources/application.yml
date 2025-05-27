@@ -27,5 +27,9 @@ spring:
       key:
         rest: ${KAKAO_API_KEY_REST}
 
+  naver:
+    map:
+      client-id: ${MAP_CLIENT_ID}
+
 server:
   port: 8081

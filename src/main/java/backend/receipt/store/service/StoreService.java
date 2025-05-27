@@ -39,6 +39,12 @@ public class StoreService {
                 .collect(Collectors.toList());
     }
 
+    public List<StoreResponse> findStoresInArea(double swLat, double swLng, double neLat, double neLng) {
+        List<Store> stores = storeRepository.findByLocationInBounds(swLat, neLat, swLng, neLng);
+        return stores.stream()
+                .map(StoreResponse::new)
+                .collect(Collectors.toList());
+    }
 
     //지도상 bound 값에 따른 가맹점 조회
     public List<StoreResponse> findStoresInArea(double swLat, double swLng, double neLat, double neLng) {

@@ -41,5 +41,4 @@ public class StoreController {
         return storeService.searchAndSaveStoreByName(request);
     }
 
-
 }
