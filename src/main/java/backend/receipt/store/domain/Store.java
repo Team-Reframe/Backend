@@ -24,4 +24,10 @@ public class Store {
     @Column(nullable = false)
     private String address;
 
+    @Column(nullable = false)
+    private Double latitude;
+
+    @Column(nullable = false)
+    private Double longitude;
+
 }

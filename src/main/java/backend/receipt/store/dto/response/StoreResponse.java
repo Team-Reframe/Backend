@@ -11,10 +11,15 @@ public class StoreResponse {
     private final String category;
     private final String address;
 
+    private final Double latitude;
+    private final Double longitude;
+
     public StoreResponse(Store store) {
         this.id = store.getId();
         this.name = store.getName();
         this.category = store.getCategory();
         this.address = store.getAddress();
+        this.latitude = store.getLatitude();
+        this.longitude = store.getLongitude();
     }
 }

@@ -22,5 +22,11 @@ public class StoreService{
         return stores.stream().map(StoreResponse::new).collect(Collectors.toList());
     }
 
+    public List<StoreResponse> findStoresInArea(double swLat, double swLng, double neLat, double neLng) {
+        List<Store> stores = storeRepository.findByLocationInBounds(swLat, neLat, swLng, neLng);
+        return stores.stream()
+                .map(StoreResponse::new)
+                .collect(Collectors.toList());
+    }
 
 }
