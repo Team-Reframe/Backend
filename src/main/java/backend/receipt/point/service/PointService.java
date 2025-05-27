@@ -4,7 +4,7 @@ import backend.receipt.member.domain.Member;
 import backend.receipt.member.repository.MemberRepository;
 import backend.receipt.point.domain.Point;
 import backend.receipt.point.domain.PointType;
-import backend.receipt.point.dto.PointResponse;
+import backend.receipt.point.dto.response.PointResponse;
 import backend.receipt.point.repository.PointRepository;
 import backend.receipt.purchase.domain.Purchase;
 import backend.receipt.purchase.repository.PurchaseRepository;
@@ -56,8 +56,11 @@ public class PointService {
 
         pointRepository.save(point);
 
-        return new PointResponse(points, purchaseId, memberId);
+        return new PointResponse(points, purchaseId, memberId, PointType.POINT);
     }
+
+
+
 }
 
 
