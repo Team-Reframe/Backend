@@ -2,13 +2,13 @@ package backend.receipt.store.service;
 
 import backend.receipt.store.domain.Store;
 import backend.receipt.store.dto.request.StoreRequest;
+import backend.receipt.store.dto.response.KakaoPlaceDetail;
 import backend.receipt.store.dto.response.StoreResponse;
 import backend.receipt.store.repository.StoreRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -35,13 +35,6 @@ public class StoreService {
     // DB 가맹점 전체조회
     public List<StoreResponse> getStoresList() {
         return storeRepository.findAll().stream()
-                .map(StoreResponse::new)
-                .collect(Collectors.toList());
-    }
-
-    public List<StoreResponse> findStoresInArea(double swLat, double swLng, double neLat, double neLng) {
-        List<Store> stores = storeRepository.findByLocationInBounds(swLat, neLat, swLng, neLng);
-        return stores.stream()
                 .map(StoreResponse::new)
                 .collect(Collectors.toList());
     }
@@ -102,6 +95,23 @@ public class StoreService {
         }
     }
 
+    //가맹점 상세 조회
+    public StoreResponse getStoreDetail(Long storeId) {
+        Store store = storeRepository.findById(storeId)
+                .orElseThrow(() -> new RuntimeException("id가 " + storeId + "인 가맹점을 찾을 수 없습니다."));
+
+        StoreResponse response = new StoreResponse(store);
+
+        KakaoPlaceDetail kakaoDetail = fetchKakaoPlaceDetail(store.getName());
+
+        if (kakaoDetail != null) {
+            if (kakaoDetail.getDescription() != null) response.setDescription(kakaoDetail.getDescription());
+            if (kakaoDetail.getPhone() != null) response.setPhone(kakaoDetail.getPhone());
+            if (kakaoDetail.getOpeningHours() != null) response.setOpeningHours(kakaoDetail.getOpeningHours());
+        }
+
+        return response;
+    }
 
 
 
@@ -155,7 +165,36 @@ public class StoreService {
         }
     }
 
+    // 카카오 상제조회 호출
+    private KakaoPlaceDetail fetchKakaoPlaceDetail(String placeName) {
+        try {
+            String encodedName = URLEncoder.encode(placeName, StandardCharsets.UTF_8);
+            String apiUrl = "https://dapi.kakao.com/v2/local/search/keyword.json?query=" + encodedName;
 
+            HttpURLConnection conn = (HttpURLConnection) new URL(apiUrl).openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Authorization", "KakaoAK " + kakaoApiKeyRest);
 
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String responseStr = br.lines().collect(Collectors.joining());
 
+            JSONObject json = new JSONObject(responseStr);
+            JSONArray documents = json.getJSONArray("documents");
+
+            if (documents.length() > 0) {
+                JSONObject place = documents.getJSONObject(0);
+                KakaoPlaceDetail detail = new KakaoPlaceDetail();
+
+                // 카카오 API 상세 정보 필드 (필요시 조정)
+                detail.setDescription(place.optString("place_name", null));
+                detail.setPhone(place.optString("phone", null));
+                detail.setOpeningHours(place.optString("opening_hours", null));
+
+                return detail;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("카카오 Place 상세정보 조회 실패: " + e.getMessage());
+        }
+        return null;
+    }
 }
