@@ -2,8 +2,10 @@ package backend.receipt.store.dto.response;
 
 import backend.receipt.store.domain.Store;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class StoreResponse {
 
     private final Long id;
@@ -14,6 +16,10 @@ public class StoreResponse {
     private final Double latitude;
     private final Double longitude;
 
+    private String description;
+    private String phone;
+    private String openingHours;
+
     public StoreResponse(Store store) {
         this.id = store.getId();
         this.name = store.getName();
@@ -21,5 +27,9 @@ public class StoreResponse {
         this.address = store.getAddress();
         this.latitude = store.getLatitude();
         this.longitude = store.getLongitude();
+        this.description = store.getDescription();
+        this.phone = store.getPhone();
+        this.openingHours = store.getOpeningHours();
     }
+
 }

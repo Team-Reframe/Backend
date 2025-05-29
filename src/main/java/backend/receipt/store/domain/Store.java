@@ -1,5 +1,6 @@
 package backend.receipt.store.domain;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -31,6 +32,16 @@ public class Store {
 
     @Column(nullable = false)
     private Double longitude;
+
+    @Column(length = 1000)
+    private String description;
+
+    @Column(length = 50)
+    private String phone;
+
+    @Column(length = 100)
+    private String openingHours;
+
 
     public static Store of(String name, String category, String address, Double latitude, Double longitude) {
         Store store = new Store();
