@@ -11,6 +11,8 @@ import backend.receipt.purchase.repository.PurchaseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Service
@@ -40,8 +42,7 @@ public class PointService {
             rate = 0.10;
         }
 
-        int points = (int) Math.round(purchase.getAmount() * rate);
-
+        int points = (int) Math.round(amount * rate);
 
 
         Member member = memberRepository.findById(memberId)
@@ -56,7 +57,7 @@ public class PointService {
 
         pointRepository.save(point);
 
-        return new PointResponse(points, purchaseId, memberId, PointType.POINT);
+        return new PointResponse(points, purchaseId, memberId, PointType.POINT, LocalDateTime.now());
     }
 
 
