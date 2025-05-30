@@ -14,6 +14,6 @@ public interface PointRepository extends CrudRepository<Point, Long> {
     Integer getTotalPoints(@Param("memberId") Long memberId);
 
 
-    List<Point> findByMemberIdOrderByCreatedAtDesc(Long memberId);
+    List<Point> findByMemberId(Long memberId);
 
 }

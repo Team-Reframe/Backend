@@ -1,26 +1,38 @@
 package backend.receipt.point.dto.response;
 
-import backend.receipt.point.domain.Point;
-import backend.receipt.point.domain.PointType;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 import java.time.LocalDateTime;
 
-@Getter
-@AllArgsConstructor
 public class PointHistoryResponse {
-    private LocalDateTime date;
-    private PointType type;
-    private int points;
+
+    private final Long pointId;
+    private final LocalDateTime createdAt;
+    private final String type;
+    private final int points;
 
 
-    public static PointHistoryResponse from(Point point) {
-        return new PointHistoryResponse(
-                point.getCreatedAt(),
-                point.getType(),
-                point.getPoints()
+    public PointHistoryResponse(Long pointId, LocalDateTime date, String type, int points) {
+        this.pointId = pointId;
+        this.createdAt = date;
+        this.type = type;
+        this.points = points;
 
-        );
     }
+
+    public Long getPointId() {
+        return pointId;
+    }
+
+    public LocalDateTime getDate() {
+        return createdAt;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+
 }
