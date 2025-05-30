@@ -43,7 +43,7 @@ public class PointService {
         }
 
         int points = (int) Math.round(amount * rate);
-
+        LocalDateTime createdAt = LocalDateTime.now();
 
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new IllegalArgumentException("회원이 존재하지 않습니다."));
@@ -53,11 +53,12 @@ public class PointService {
                 .purchase(purchase)
                 .points(points)
                 .type(PointType.POINT)
+                .createdAt(LocalDateTime.now())
                 .build();
 
         pointRepository.save(point);
 
-        return new PointResponse(points, purchaseId, memberId, PointType.POINT, LocalDateTime.now());
+        return new PointResponse(points, purchaseId, memberId, PointType.POINT, createdAt);
     }
 
 

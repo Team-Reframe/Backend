@@ -45,9 +45,9 @@ public class PointController {
     }
 
 
-    @GetMapping("/{memberId}/history")
-    public ResponseEntity<List<PointHistoryResponse>> getPointHistory(@PathVariable Long memberId) {
-        List<PointHistoryResponse> history = pointHistoryService.getHistory(memberId);
+    @GetMapping("/history")
+    public ResponseEntity<?> getHistory(@RequestParam Long memberId) {
+    List<PointHistoryResponse> history = pointHistoryService.getHistory(memberId);
         return ResponseEntity.ok(history);
     }
 
