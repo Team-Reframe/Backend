@@ -6,6 +6,8 @@ import backend.receipt.purchase.domain.Purchase;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 
 @Entity
 @Getter
@@ -30,5 +32,7 @@ public class Point {
     private PointType type;
 
     private int points;
+
+    private LocalDateTime createdAt;
 
 }
