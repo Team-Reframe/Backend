@@ -33,6 +33,10 @@ public class MemberService {
         return new MemberResponse(member);
     }
 
+    public boolean checkDuplication(String email) {
+        return memberRepository.existsByEmail(email);
+    }
+
     public LoginResponse login(String email, String password) {
         Member member = memberRepository.findByEmail(email)
                 .orElseThrow(() -> new IllegalArgumentException("이메일을 찾을 수 없습니다."));
@@ -63,6 +67,5 @@ public class MemberService {
         }
         tokenBlacklist.add(token);
     }
-
 
 }
