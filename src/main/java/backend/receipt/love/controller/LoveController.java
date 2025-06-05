@@ -1,5 +1,6 @@
 package backend.receipt.love.controller;
 
+import backend.receipt.love.dto.LoveResponse;
 import backend.receipt.love.service.LoveService;
 import backend.receipt.love.service.LoveTotalService;
 import backend.receipt.store.domain.Store;
@@ -17,6 +18,7 @@ import java.util.List;
 @RequestMapping
 public class LoveController {
     private final LoveService loveService;
+    private final LoveTotalService loveTotalService;
 
     @PostMapping("/love/add")
     public ResponseEntity<String> addLove(@RequestParam Long memberId, @RequestParam Long storeId) {
@@ -29,9 +31,9 @@ public class LoveController {
         }
     }
 
-  /*  @PostMapping("/love/total")
-    public ResponseEntity<Store> totalLove(@RequestParam Long memberId) {
-        public
-
-    }*/
+    @PostMapping("/love/total")
+    public ResponseEntity<List<LoveResponse>> getLovedStores(@RequestParam Long memberId) {
+        List<LoveResponse> lovedStores = loveTotalService.getLovedStores(memberId);
+        return ResponseEntity.ok(lovedStores);
+    }
 }

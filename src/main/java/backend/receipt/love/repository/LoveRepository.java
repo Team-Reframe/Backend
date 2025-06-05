@@ -16,8 +16,8 @@ public interface LoveRepository extends JpaRepository<Love, Long> {
     Optional<Love> findByMemberIdAndStoreId(Long memberId, Long storeId);
 
 
-    @Query("SELECT Store FROM Store WHERE Member.id =: memberId")
-    List<Store> getTotalLoves(@Param("memberId") Long memberId);
+    @Query("SELECT L FROM Love L WHERE L.memberId =:memberId")
+    List<Love> getTotalLoves(@Param("memberId") Long memberId);
 
 
 
