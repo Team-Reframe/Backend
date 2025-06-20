@@ -46,7 +46,7 @@ public class MemberService {
         }
 
         String token = jwtTokenProvider.createToken(member.getId(), member.getEmail());
-        return new LoginResponse(token);
+        return new LoginResponse(token,member.getName());
     }
 
     private void validatePasswordMatch(MemberRequest request) {
