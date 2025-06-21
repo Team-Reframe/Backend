@@ -18,11 +18,20 @@ spring:
     servlet:
       path: /api/v1
 
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
   kakao:
     api:
       key:
         rest: ${KAKAO_API_KEY_REST}
 
+  naver:
+    ocr:
+      invoke-url: ${NAVER_OCR_INVOKE_URL}
+      secret-key: ${NAVER_OCR_SECRET_KEY}
 
 server:
   port: 8081

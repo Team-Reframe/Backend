@@ -4,6 +4,7 @@ import backend.receipt.love.dto.LoveResponse;
 import backend.receipt.love.service.LoveService;
 import backend.receipt.love.service.LoveTotalService;
 import backend.receipt.store.domain.Store;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping
+@Tag(name = "Love", description = "즐겨찾기 API")
 public class LoveController {
     private final LoveService loveService;
     private final LoveTotalService loveTotalService;
