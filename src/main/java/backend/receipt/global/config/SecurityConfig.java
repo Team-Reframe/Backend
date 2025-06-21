@@ -32,14 +32,18 @@ public class SecurityConfig {
                                 "/v3/api-docs/**",
                                 "/swagger-resources/**",
                                 "/auth/login",
-                                "/auth/logout",
                                 "/stores/**",
-                                "/member/sign-up"
+                                "/member/**",
+                                "/reviews/**"
                         ).permitAll()
                         .requestMatchers(
-                                "/receipt/**",
+                                "/reviews",
+                                "/auth/logout",
                                 "/love/**",
-                                "/point/**",
+                                "/points/**",
+                                "reward/**",
+                                "/total",
+                                "history",
                                 "/receipts/**"
                         ).authenticated()
                         .anyRequest().denyAll()
