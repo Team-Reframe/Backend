@@ -52,7 +52,6 @@ public class ReviewService {
         reviewRepository.save(review);
     }
 
-
     public List<ReviewResponse> getReviewsByStoreId(Long storeId) {
         List<Review> reviews = reviewRepository.findAllByStoreId(storeId);
 
@@ -90,6 +89,17 @@ public class ReviewService {
                         .createdAt(review.getCreatedAt())
                         .build())
                 .collect(Collectors.toList());
+    }
+
+    public void deleteReview(Long reviewId, Long memberId) {
+        Review review = reviewRepository.findById(reviewId)
+                .orElseThrow(() -> new IllegalArgumentException("리뷰를 찾을 수 없습니다."));
+
+        if (!review.getMember().getId().equals(memberId)) {
+            throw new IllegalArgumentException("본인의 리뷰만 삭제할 수 있습니다.");
+        }
+
+        reviewRepository.delete(review);
     }
 
 }
