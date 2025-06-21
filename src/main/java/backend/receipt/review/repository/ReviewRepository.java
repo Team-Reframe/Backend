@@ -1,4 +1,7 @@
 package backend.receipt.review.repository;
 
-public class ReviewRepository {
+import backend.receipt.review.domain.Review;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ReviewRepository extends JpaRepository<Review, Long> {
 }
