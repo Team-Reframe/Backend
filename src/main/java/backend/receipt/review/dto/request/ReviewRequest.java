@@ -8,5 +8,6 @@ public class ReviewRequest {
         private Long memberId;
         private Long purchaseId;
         private String content;
+        private Long storeId;
         private int rating; // 별점 1~5
 }
