@@ -13,6 +13,9 @@ import backend.receipt.store.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,12 +38,15 @@ public class ReviewService {
         Store store = storeRepository.findById(reviewRequest.getStoreId())
                 .orElseThrow(() -> new IllegalArgumentException("가맹점을 찾을 수 없습니다."));
 
+        String createdAt = LocalDate.now().format(DateTimeFormatter.ofPattern("yy-MM-dd"));
+
         Review review = Review.builder()
                 .member(member)
                 .purchase(purchase)
                 .store(store)
                 .content(reviewRequest.getContent())
                 .rating(reviewRequest.getRating())
+                .createdAt(createdAt)
                 .build();
 
         reviewRepository.save(review);
@@ -54,6 +60,7 @@ public class ReviewService {
                 .map(review -> ReviewResponse.builder()
                         .reviewId(review.getId())
                         .content(review.getContent())
+                        .createdAt(review.getCreatedAt())
                         .rating(review.getRating())
                         .build())
                 .collect(Collectors.toList());
