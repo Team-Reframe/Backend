@@ -65,4 +65,16 @@ public class ReviewService {
                         .build())
                 .collect(Collectors.toList());
     }
+
+    public ReviewResponse getReviewById(Long reviewId) {
+        Review review = reviewRepository.findById(reviewId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 리뷰가 존재하지 않습니다."));
+
+        return ReviewResponse.builder()
+                .reviewId(review.getId())
+                .content(review.getContent())
+                .rating(review.getRating())
+                .createdAt(review.getCreatedAt())
+                .build();
+    }
 }
