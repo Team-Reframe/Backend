@@ -40,4 +40,12 @@ public class ReviewController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/my")
+    @Operation(summary = "내가 쓴 리뷰 조회", description = "로그인한 사용자가 작성한 모든 리뷰를 조회합니다.")
+    public ResponseEntity<List<ReviewResponse>> getMyReviews(@RequestParam Long memberId) {
+        List<ReviewResponse> reviews = reviewService.getReviewsByMember(memberId);
+        return ResponseEntity.ok(reviews);
+    }
+
+
 }
