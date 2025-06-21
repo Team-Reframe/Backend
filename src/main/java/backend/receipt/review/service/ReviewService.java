@@ -77,4 +77,19 @@ public class ReviewService {
                 .createdAt(review.getCreatedAt())
                 .build();
     }
+
+    public List<ReviewResponse> getReviewsByMember(Long memberId) {
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 회원이 존재하지 않습니다."));
+
+        return reviewRepository.findByMember(member).stream()
+                .map(review -> ReviewResponse.builder()
+                        .reviewId(review.getId())
+                        .content(review.getContent())
+                        .rating(review.getRating())
+                        .createdAt(review.getCreatedAt())
+                        .build())
+                .collect(Collectors.toList());
+    }
+
 }
