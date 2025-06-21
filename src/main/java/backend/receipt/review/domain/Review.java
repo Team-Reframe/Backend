@@ -30,6 +30,7 @@ public class Review {
     @JoinColumn(name = "store_id", nullable = false)
     private Store store;
 
+    private String createdAt;
 
     private String content;
 
