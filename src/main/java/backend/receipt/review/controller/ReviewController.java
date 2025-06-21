@@ -33,4 +33,11 @@ public class ReviewController {
         return ResponseEntity.ok(responseList);
     }
 
+    @GetMapping("/{reviewId}")
+    @Operation(summary = "리뷰 상세 조회", description = "리뷰 ID로 단일 리뷰 상세 내용을 조회합니다.")
+    public ResponseEntity<ReviewResponse> getReview(@PathVariable Long reviewId) {
+        ReviewResponse response = reviewService.getReviewById(reviewId);
+        return ResponseEntity.ok(response);
+    }
+
 }
