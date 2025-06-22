@@ -5,6 +5,7 @@ import backend.receipt.store.dto.request.StoreRequest;
 import backend.receipt.store.dto.response.KakaoPlaceDetail;
 import backend.receipt.store.dto.response.StoreResponse;
 import backend.receipt.store.repository.StoreRepository;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -113,8 +114,30 @@ public class StoreService {
         return response;
     }
 
+    //초기데이터
+    @PostConstruct
+    public void initStoresOnStartup() {
+        try {
+            StoreRequest store1 = new StoreRequest();
+            store1.setQuery("베이커리");
+            store1.setName("파리바게뜨 시흥장현점");
+            searchAndSaveStoreByName(store1);
 
+            StoreRequest store2 = new StoreRequest();
+            store2.setQuery("카페");
+            store2.setName("일리카페 시흥시청점");
+            searchAndSaveStoreByName(store2);
 
+            StoreRequest store3 = new StoreRequest();
+            store3.setQuery("편의점");
+            store3.setName("CU 시흥시청점");
+            searchAndSaveStoreByName(store3);
+
+            System.out.println("[초기 가맹점 등록 완료]");
+        } catch (Exception e) {
+            System.err.println("[초기 가맹점 등록 실패] " + e.getMessage());
+        }
+    }
     // kakao api 관련
     // kakao api 호출
     private String fetchKakaoApiResponse(String query, double x, double y, int radius) {

@@ -4,9 +4,12 @@ import backend.receipt.member.security.TokenBlacklist;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
+import java.util.Collections;
 import java.util.Date;
 
 @Component
@@ -47,5 +50,19 @@ public class JwtTokenProvider {
             throw new JwtException("유효하지 않은 JWT 토큰입니다.");
         }
     }
+    public Authentication getAuthentication(String token) {
+        Claims claims = getClaims(token);
+        String email = claims.getSubject();
+        return new UsernamePasswordAuthenticationToken(email, "", Collections.emptyList());
+    }
+
+    private Claims getClaims(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+    }
+
 }
 
